@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.demo.practice4.mybatis.MyMapper">
+    <select id="selectA1Name">
+        SELECT `name` FROM book WHERE isbn = 'A1'
+    </select>
+    <select id="selectBookName">
+        SELECT `name` FROM book WHERE isbn = #{bookName}
+    </select>
+    <select id="selectBookByISBN" resultType="com.koreait.demo.practice4.mybatis.Book">
+        SELECT * FROM book WHERE isbn = #{isbn}
+    </select>
+    <select id="selectAllBooks" resultType="com.koreait.demo.practice4.mybatis.Book">
+        SELECT * FROM book
+    </select>
+
+
+    <select id="selectOne">
+        SELECT 1
+    </select>
+</mapper>
+        <!-- namespace: 연결할 java interface파일 경로
+            => 이 경로 잘못적으면 어플리케이션 실행 안됩니다!!
+            알리아스 Alias
+         -->

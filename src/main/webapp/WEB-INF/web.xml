@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/root-context.xml</param-value>
+    </context-param>
+    <!-- application context가 로딩될때 동작하는 리스너    -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Spring의 핵심 기능인 dispatcherServlet를 정의한다   -->
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <!-- dispatcher servlet이 사용하는 config 객체를 설정함       -->
+            <!-- my context에서 사용하는 파라미터(객체)로, xml파일의 내용을 불러와서 사용한다   -->
+            <!-- my-context.xml은 Config 클래스라고 보면 된다 -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/my-context.xml</param-value>
+        </init-param>
+        <!-- 첫 번째로 동작하도록 우선순위를 1로 설정(다른 서블릿보다 우선)  -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- dispatcher servlet이 동작하는 url패턴을 정의한다. '/' 이기 때문에 어느 페이지에서나 동작한다    -->
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 동작 전 후에 UTF-8로 데이터를 인코딩하는 인코딩 필터를 정의 (이거 없으면 한글이 안나옴)  -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <!-- 이 필터는 어느 페이지에서나 동작한다    -->
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+
+</web-app>
