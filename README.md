@@ -1,2 +1,2 @@
 # 2024.11.06_Spring_IT_KOREA_mybatis
-(IT 코리아) Spring 1번째 + mybatis
+(IT 코리아) Spring (mybatis 추가)
